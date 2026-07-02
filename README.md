@@ -1,37 +1,22 @@
-# TaskFlow
+# 📝 TaskFlow
 
-Менеджер задач в терминале с приоритетами, категориями и прогресс-баром.
+Простой консольный менеджер задач. Хранит таски в обычном json файлике, никаких баз данных. Написан чисто на стандарной библиотеке питона.
 
-## Возможности
+## Зачем?
 
-- Добавление задач с приоритетом (high / medium / low) и категорией
-- Отметка выполнения и удаление задач
-- Фильтрация по категории и приоритету
-- Прогресс-бар выполнения
-- Хранение в JSON-файле (tasks.json)
-- Красивый вывод с цветами и иконками
+Когда нужно быстро записать задачку в терминале, не отрываясь от кода, а открывать Jira или Todoist лень.
+
+## Фичи
+
+- Добавление, удаление, редактирование
+- Приоритеты (H - High, M - Medium, L - Low)
+- Категории
+- Статусы (TODO, IN PROGRESS, DONE)
+- Цветовой вывод в терминале
 
 ## Использование
 
 ```bash
-# Добавить задачу
-python3 taskflow.py add "Fix login bug" -p high -c backend
-python3 taskflow.py add "Write README" -p low -c docs
-python3 taskflow.py add "Design landing page" -p medium -c frontend
-
-# Список задач
-python3 taskflow.py list
-python3 taskflow.py list -c backend          # фильтр по категории
-python3 taskflow.py list -p high             # фильтр по приоритету
-python3 taskflow.py list -a                  # включая выполненные
-
-# Отметить выполнение
-python3 taskflow.py done 1
-
-# Удалить задачу
-python3 taskflow.py remove 2
-
-# Очистить выполненные
 python3 taskflow.py clear
 ```
 

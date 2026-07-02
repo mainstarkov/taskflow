@@ -7,9 +7,6 @@ import os
 import sys
 from datetime import datetime
 
-
-# ── Colors ───────────────────────────────────────────────────────────
-
 class C:
     RED     = "\033[91m"
     GREEN   = "\033[92m"
@@ -41,9 +38,6 @@ PRIORITY_COLORS = {"high": C.RED, "medium": C.YELLOW, "low": C.GREEN}
 PRIORITY_ICONS = {"high": "🔴", "medium": "🟡", "low": "🟢"}
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tasks.json")
 
-
-# ── Data layer ───────────────────────────────────────────────────────
-
 def load_tasks() -> list[dict]:
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r") as f:
@@ -58,9 +52,6 @@ def save_tasks(tasks: list[dict]):
 
 def next_id(tasks: list[dict]) -> int:
     return max((t["id"] for t in tasks), default=0) + 1
-
-
-# ── Commands ─────────────────────────────────────────────────────────
 
 def cmd_add(args):
     tasks = load_tasks()
@@ -179,9 +170,6 @@ def cmd_clear(args):
     save_tasks(remaining)
     print(f"\n  {C.GREEN}✓{C.RESET} Cleared {removed} completed tasks\n")
 
-
-# ── Entry point ──────────────────────────────────────────────────────
-
 def main():
     parser = argparse.ArgumentParser(prog="taskflow", description="Terminal task manager")
     sub = parser.add_subparsers(dest="command")
@@ -194,7 +182,6 @@ def main():
     p_done = sub.add_parser("done", help="mark task as completed")
     p_done.add_argument("id", type=int, help="task ID")
 
-    p_rm = sub.add_parser("remove", help="delete a task")
     p_rm.add_argument("id", type=int, help="task ID")
 
     p_list = sub.add_parser("list", help="show tasks")
